@@ -1,0 +1,50 @@
+{% extends 'layout.html'%}
+{% block content%}
+
+
+<div class="container">
+	<div class="col-md-2"></div>
+	<div class="col-md-8"></div>
+	<h2 class="text-center bg-success p-2 ">Agregar Producto </h2>
+{% from "_formhelpers.html" import render_field %}
+	<form action="" method="POST" enctype="multipart/form-data">
+	{{render_field(form.name,class='form-control',placeholder="Agregar producto")}}
+	{{render_field(form.price,class='form-control',placeholder="Precio")}}
+	{{render_field(form.discount,class='form-control',placeholder="Descuento")}}
+	{{render_field(form.stock,class='form-control',placeholder="Cantidad de productos que hay:")}}
+
+<label for="brand">Agregar Marca</label>
+	<select name="brand" id="brand" class="form-control" required>
+		<option value="">Seleccionar marca</option>
+		{% for brand in brands%}
+		<option value="{{brand.id}}">{{brand.name}}</option>
+		{% endfor%}
+	</select>
+
+
+	<label for="category">Agregar Categoria</label>
+	<select name="category" id="category" class="form-control" required>
+		<option value="">Seleccionar categoria</option>
+		{% for category in categories%}
+		<option value="{{category.id}}">{{category.name}}</option>
+		{% endfor%}
+	</select>
+
+
+	{{render_field(form.color,class='form-control',placeholder="Add prodcut Colors")}}
+	{{render_field(form.discription,class='form-control',placeholder="Add prodcut detail",row="10")}}
+
+	<div class="container">
+		<div class="row">
+	<div class="col-md-4">{{render_field(form.image_1, class="form-control")}}</div>
+	<div class="col-md-4">{{render_field(form.image_2,class="form-control")}}</div>
+	<div class="col-md-4">{{render_field(form.image_3,class="form-control")}}</div>	
+	</div>	
+	</div>	
+	<button type="submit" class="btn btn-outline-info mt-4">Crear</button>
+	<a href="{{url_for('admin')}}" class="btn btn-outline-secondary mt-4 ">Regresar</a>
+	</form>
+</div>
+</div>
+
+{% endblock content%}
